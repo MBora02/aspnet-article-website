@@ -1,0 +1,22 @@
+﻿@model List<ResultReviewDto>
+
+<ul class="comment-list">
+    @foreach (var item in Model)
+    {
+        <li class="comment">
+            <div class="comment-body">
+                <h3>@(item.ReviewerName + " " + item.ReviewerSurname)</h3>
+                <div class="meta">@(((DateTime)item.CreatedAt).ToString("dd-MMM-yyyy"))</div>
+
+                <div>
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <span class="@(i <= item.Rating ? "text-warning" : "text-secondary")">&#9733;</span>
+                    }
+                </div>
+
+                <p>@item.Comment</p>
+            </div>
+        </li>
+    }
+</ul>

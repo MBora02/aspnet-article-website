@@ -1,0 +1,64 @@
+﻿@model ArticleWebsite.Dto.ArticleDtos.CreateArticleDto
+@{
+    ViewData["Title"] = "CreateArticle";
+    Layout = "~/Views/ProfileUILayout/Index.cshtml";
+}
+
+<h2>Yeni Makale Oluştur</h2>
+
+<form asp-action="CreateArticle" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Başlık</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>İçerik</label>
+        <textarea asp-for="Content" class="form-control" rows="6"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>PDF Yükle</label>
+        <input asp-for="PdfFile" type="file" class="form-control" accept=".pdf" />
+    </div>
+
+    <div class="form-group">
+        <label>Görsel Yükle</label>
+        <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" />
+
+    </div>
+    <div class="form-group">
+        <label>Departman</label>
+        @if (ViewBag.Departments != null && ((List<ResultDepartmentDto>)ViewBag.Departments).Any())
+        {
+            @Html.DropDownListFor(x => x.DepartmentId,
+            new SelectList(ViewBag.Departments, "DepartmentId", "Name"),
+                "Departman Seçiniz",
+                new { @class = "form-control" })
+                }
+        else
+        {
+            <div class="text-danger">Departman verileri yüklenemedi.</div>
+        }
+    </div>
+
+    <div class="form-group">
+        <label>Etiket Bulutu</label>
+        @if (ViewBag.TagClouds != null && ((List<ResultTagCloudDto>)ViewBag.TagClouds).Any())
+        {
+            @Html.DropDownListFor(x => x.TagCloudId,
+            new SelectList(ViewBag.TagClouds, "TagCloudId", "Title"),
+                "Etiket Seçiniz",
+                new { @class = "form-control" })
+                }
+        else
+        {
+            <div class="text-danger">Etiket verileri yüklenemedi.</div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-success">Oluştur</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>

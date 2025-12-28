@@ -1,0 +1,35 @@
+﻿@model ResultArticleWithAllDto
+<div class="col-md-8 ftco-animate">
+
+    @if (!string.IsNullOrEmpty(Model.ImagePath))
+    {
+        <p>
+            <img src="@Model.ImagePath" alt="Makale Görseli" class="img-fluid" />
+        </p>
+    }
+   
+        <a href="@Model.PdfFilePath" class="btn btn-outline-primary mb-3" target="_blank">
+            PDF'yi Görüntüle
+        </a>
+    
+    <h2 class="mb-3">@Model.Title</h2>
+    <p>@Model.Content</p>
+   
+
+    @await Component.InvokeAsync("_ArticleDetailTagCloudByBlogComponentPartial", new {id=ViewBag.articleId})
+
+
+    @await Component.InvokeAsync("_ArticleDetailAuthorByArticleComponentView", new { id = ViewBag.articleId })
+
+
+
+    <div class="pt-5 mt-5">
+
+        @await Component.InvokeAsync("_ReviewListByArticleComponentPartial", new { id = ViewBag.articleId })
+
+       @*  @await Component.InvokeAsync("_AddReviewComponentPartial") *@
+
+        @await Html.PartialAsync("~/Views/Article/AddReview.cshtml", new CreateReviewDto { ArticleId = Model.ArticleId })
+    </div>
+
+</div> <!-- .col-md-8 -->

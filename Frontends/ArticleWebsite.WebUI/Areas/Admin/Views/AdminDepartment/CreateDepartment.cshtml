@@ -1,0 +1,27 @@
+﻿@model CreateDepartmentDto
+@{
+    ViewData["Title"] = "CreateDepartment";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Bölüm Girişi</h4>
+                        <form asp-area="Admin" asp-controller="AdminDepartment" asp-action="CreateDepartment" method="post">
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label for="exampleInputName">Bölüm Adı</label>
+                                <input type="text" class="form-control" id="exampleInputName" asp-for="Name" placeholder="Bölüm Adı Girişi Yapınız">
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Bölümü Kaydet</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

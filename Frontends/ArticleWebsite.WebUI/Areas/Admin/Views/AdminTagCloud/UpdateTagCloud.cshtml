@@ -1,0 +1,28 @@
+﻿@model UpdateTagCloudDto
+@{
+    ViewData["Title"] = "UpdateTagCloud";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"> Etiket Güncelleme Sayfası</h4>
+                        <form method="post">
+                            <input type="hidden" asp-for="TagCloudId" />
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Başlık</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="Title" placeholder="Başlığı Giriniz">
+                            </div>
+
+                            <button type="submit" class="btn btn-success waves-effect waves-light">Etiket Bilgisini Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

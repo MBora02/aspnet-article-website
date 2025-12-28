@@ -1,0 +1,49 @@
+﻿@model List<ArticleWebsite.Dto.ArticleDtos.ResultArticleWithAllDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/ProfileUILayout/Index.cshtml";
+}
+
+<h2 class="mt-3">Onay Bekleyen Makaleler</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-hover mt-4">
+        <thead class="table-light">
+            <tr>
+                <th>Makale Adı</th>
+                <th>Durum</th>
+                <th>Bölüm</th>
+                <th>Yayınlayan</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var article in Model)
+            {
+                <tr>
+                    <td>@article.Title</td>
+                    <td>@article.StatusName</td>
+                    <td>@article.DepartmentName</td>
+                    <td>@article.AuthorName @article.AuthorSurname</td>
+                    <td>
+                        <a asp-action="ArticleDetail" asp-route-id="@article.ArticleId" class="btn btn-info btn-sm">Detay</a>
+
+                        <form asp-action="ApproveArticle" method="post" asp-route-id="@article.ArticleId" class="d-inline">
+                            <button type="submit" class="btn btn-success btn-sm">Onayla</button>
+                        </form>
+
+                        <form asp-action="RejectArticle" method="post" asp-route-id="@article.ArticleId" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Reddet</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning mt-4">Görüntülenecek makale bulunamadı.</div>
+}
+

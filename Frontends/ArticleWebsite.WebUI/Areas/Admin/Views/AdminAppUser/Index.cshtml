@@ -1,0 +1,70 @@
+﻿@model List<GetAppUserWithAllDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Kullanıcı Listesi</h4>
+                        <a href="/Admin/AdminAppUser/CreateAppUser/" class="btn btn-outline-primary">Yeni Kullanıcı Girişi</a>
+
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Ad</th>
+                                        <th>Soyad</th>
+                                        <th>Mail</th>
+                                        <th>Şifre</th>
+                                        <th>Bölüm</th>
+                                        <th>Role</th>
+                                        <th>Sil</th>
+                                        <th>Güncelle</th>
+                                        <th>Bölüme ait makaleler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <th scope="row">@count</th>
+                                            <td>@item.Name</td>
+                                            <td>@item.Surname</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.Password</td>
+                                            <td>@item.DepartmentName</td>
+                                            <td>@item.AppRoleName</td>
+                                            <td><a href="/Admin/AdminAppUser/RemoveAppUser/@item.AppUserId" class="btn btn-outline-danger">Sil</a></td>
+                                            <td><a href="/Admin/AdminAppUser/UpdateAppUser/@item.AppUserId" class="btn btn-outline-success">Güncelle</a></td>
+                                            <td><a href="/Admin/AdminAppUser/UserArticles/@item.AppUserId" class="btn btn-outline-dark">Makaleler</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                    <!-- end card-body-->
+                </div>
+                <!-- end card -->
+
+            </div>
+            <!-- end col -->
+
+        </div>
+        <!-- end page title -->
+
+    </div> <!-- container-fluid -->
+</div>
+

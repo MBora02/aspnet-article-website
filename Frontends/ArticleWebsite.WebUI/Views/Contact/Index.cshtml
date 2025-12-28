@@ -1,0 +1,35 @@
+﻿@model CreateContactDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="col-md-8 block-9 mb-md-5">
+    <form asp-action="Index" method="post" class="bg-light p-5 contact-form">
+        <div class="form-group">
+            <input asp-for="Name" class="form-control" placeholder="Ad" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="Surname" class="form-control" placeholder="Soyad" />
+            <span asp-validation-for="Surname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="Email" class="form-control" placeholder="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="Subject" class="form-control" placeholder="Konu" />
+            <span asp-validation-for="Subject" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <textarea asp-for="Message" cols="30" rows="7" class="form-control" placeholder="Mesaj"></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Mesaj Gönder" class="btn btn-primary py-3 px-5" />
+        </div>
+    </form>
+</div>
+
+

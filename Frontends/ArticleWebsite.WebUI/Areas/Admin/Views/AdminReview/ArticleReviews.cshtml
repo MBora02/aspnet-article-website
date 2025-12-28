@@ -1,0 +1,56 @@
+﻿@using ArticleWebsite.Dto.ReviewDtos
+@model List<ResultReviewDto>
+@{
+    ViewData["Title"] = "ArticleReviews";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yorum Listesi - BlogID: @ViewBag.Id</h4>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Rating</th>
+                                        <th>Yorum</th>
+                                        <th>Tarih</th>
+                                        <th>Ad</th>
+                                        <th>Soyad</th>
+                                        <th>Makale</th>
+                                        <th>Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <th scope="row">@count</th>
+                                            <td>@item.Rating</td>
+                                            <td>@item.Comment</td>
+                                            <td>@item.CreatedAt</td>
+                                            <td>@item.ReviewerName</td>
+                                            <td>@item.ReviewerSurname</td>
+                                            <td>@item.ArticleTitle</td>
+                                            <td><a href="/Admin/AdminReview/RemoveReview/@item.ReviewId?articleId=@ViewBag.Id" class="btn btn-outline-danger">Sil</a>
+                                            <td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

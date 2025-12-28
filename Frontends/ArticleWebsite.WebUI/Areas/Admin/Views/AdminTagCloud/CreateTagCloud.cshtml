@@ -1,0 +1,27 @@
+﻿@model CreateTagCloudDto
+@{
+    ViewData["Title"] = "CreateTagCloud";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Etiket Girişi</h4>
+                        <form asp-area="Admin" asp-controller="AdminTagCloud" asp-action="CreateTagCloud" method="post">
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label for="exampleInputName">Etiket Adı</label>
+                                <input type="text" class="form-control" id="exampleInputName" asp-for="Title" placeholder="Etiket Adı Girişi Yapınız">
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Etiketi Kaydet</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

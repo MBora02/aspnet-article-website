@@ -1,0 +1,14 @@
+﻿@model List<ResultFaqDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+<div class="container py-4">
+    @foreach (var item in Model)
+    {
+        <div class="faq-item mb-5">
+            <h2 class="faq-question mb-3">@item.Question</h2>
+            <p class="faq-answer">@item.Answer</p>
+        </div>
+    }
+</div>

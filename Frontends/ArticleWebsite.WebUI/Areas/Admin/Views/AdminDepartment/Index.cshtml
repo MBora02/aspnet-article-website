@@ -1,0 +1,62 @@
+﻿@model List<ResultDepartmentDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Üniversite Bölüm Listesi</h4>
+                        <a href="/Admin/AdminDepartment/CreateDepartment/" class="btn btn-outline-primary">Yeni Bölüm Girişi</a>
+                        
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Bölüm Adı</th>
+                                        <th>Sil</th>
+                                        <th>Güncelle</th>
+                                        <th>Bölüme ait makaleler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <th scope="row">@count</th>
+                                            <td>@item.Name</td>
+                                            <td><a href="/Admin/AdminDepartment/RemoveDepartment/@item.DepartmentId" class="btn btn-outline-danger">Sil</a></td>
+                                            <td><a href="/Admin/AdminDepartment/UpdateDepartment/@item.DepartmentId" class="btn btn-outline-success">Güncelle</a></td>
+                                            <td><a href="/Admin/AdminDepartment/UserArticles/@item.DepartmentId" class="btn btn-outline-dark">Bölüme ait makaleler</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            
+                        </div>
+
+                    </div>
+                    <!-- end card-body-->
+                </div>
+                <!-- end card -->
+
+            </div>
+            <!-- end col -->
+
+        </div>
+        <!-- end page title -->
+
+    </div> <!-- container-fluid -->
+</div>

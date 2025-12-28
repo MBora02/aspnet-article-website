@@ -1,0 +1,31 @@
+﻿@model UpdateFaqDto
+@{
+    ViewData["Title"] = "UpdateFaq";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Soru Güncelleme Sayfası</h4>
+                        <form asp-area="Admin" asp-controller="AdminFaq" asp-action="UpdateFaq" method="post">
+                            <input type="hidden" asp-for="FaqId" />
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Soru</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="Question" placeholder="Soruyu Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Cevap</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="Answer" placeholder="Cevabı Giriniz">
+                            </div>
+                            <button type="submit" class="btn btn-success waves-effect waves-light">Soru Bilgisini Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

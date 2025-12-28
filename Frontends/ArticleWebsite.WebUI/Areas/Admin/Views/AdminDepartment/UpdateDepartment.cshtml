@@ -1,0 +1,29 @@
+﻿@model UpdateDepartmentDto
+@{
+    ViewData["Title"] = "UpdateDepartment";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Başlık Güncelle Sayfası</h4>
+                        <form asp-action="UpdateDepartment" asp-controller="AdminDepartment" asp-area="Admin" method="post">
+
+                            <input type="hidden" asp-for="DepartmentId" />
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Başlık</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="Name" placeholder="Başlığı Giriniz">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-success waves-effect waves-light">Bölüm Bilgisini Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

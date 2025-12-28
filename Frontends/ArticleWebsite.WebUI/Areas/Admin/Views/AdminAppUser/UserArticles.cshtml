@@ -1,0 +1,84 @@
+﻿@model List<ResultArticleWithAllDto>
+@{
+    ViewData["Title"] = "UserArticles";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Kullanıcının Makaleleri</h4>
+
+                        @if (Model != null && Model.Any())
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped align-middle">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Makale Adı</th>
+                                            <th>Tarih</th>
+                                            <th>Ad</th>
+                                            <th>Soyad</th>
+                                            <th>Bölüm</th>
+                                            <th>Durum</th>
+                                            <th>Etiket</th>
+                                            <th>Sil</th>
+                                            <th>Ayrıntılar</th>
+                                            <th>Yorumlar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <td>@count</td>
+                                                <td>@item.Title</td>
+                                                <td>@item.CreatedAt.ToString("dd.MM.yyyy")</td>
+                                                <td>@item.AuthorName</td>
+                                                <td>@item.AuthorSurname</td>
+                                                <td>@item.DepartmentName</td>
+                                                <td>@item.StatusName</td>
+                                                <td>@item.TagCloudTitle</td>
+                                                <td>
+                                                    <a href="/Admin/AdminArticle/RemoveArticle/@item.ArticleId" class="btn btn-sm btn-outline-danger">
+                                                        Sil
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="/Admin/AdminArticle/UpdateArticle/@item.ArticleId" class="btn btn-sm btn-outline-success">
+                                                        Ayrıntılar
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="/Admin/AdminComment/ArticleComments/@item.ArticleId" class="btn btn-sm btn-outline-dark">
+                                                        Yorumlar
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-warning">
+                                Bu kullanıcıya ait herhangi bir makale bulunamadı.
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

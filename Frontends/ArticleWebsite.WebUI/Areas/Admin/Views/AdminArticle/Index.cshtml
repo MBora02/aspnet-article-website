@@ -1,0 +1,72 @@
+﻿@model List<ResultArticleWithAllDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Makale Listesi</h4>
+
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Makale Adı</th>
+                                        <th>Tarih</th>
+                                        <th>Ad</th>
+                                        <th>Soyad</th>
+                                        <th>Bölüm adı</th>
+                                        <th>Durum</th>
+                                        <th>Etiket</th>
+                                        <th>Sil</th>
+                                        <th>Ayrıntılar</th>
+                                        <th>Yorumlar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <th scope="row">@count</th>
+                                            <td>@item.Title</td>
+                                            <td>@item.CreatedAt</td>
+                                            <td>@item.AuthorName</td>
+                                            <td>@item.AuthorSurname</td>
+                                            <td>@item.DepartmentName</td>
+                                            <td>@item.StatusName</td>
+                                            <td>@item.TagCloudTitle</td>
+                                            <td><a href="/Admin/AdminArticle/RemoveArticle/@item.ArticleId" class="btn btn-outline-danger">Sil</a></td>
+                                            <td><a href="/Admin/AdminArticle/UpdateArticle/@item.ArticleId" class="btn btn-outline-success">Ayrıntılar</a></td>
+                                            <td><a href="/Admin/AdminReview/ArticleReviews/@item.ArticleId" class="btn btn-outline-dark">Yorumlar</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                    <!-- end card-body-->
+                </div>
+                <!-- end card -->
+
+            </div>
+            <!-- end col -->
+
+        </div>
+        <!-- end page title -->
+
+    </div> <!-- container-fluid -->
+</div>
+

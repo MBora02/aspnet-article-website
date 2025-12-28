@@ -1,0 +1,64 @@
+﻿@model UpdateAppUserDto
+@{
+    ViewData["Title"] = "UpdateAppUser";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Kullanıcı Güncelleme Sayfası</h4>
+                        <form method="post">
+                            <input type="hidden" asp-for="AppUserId" />
+
+                            <div class="form-group">
+                                <label asp-for="Name" class="form-label">Ad</label>
+                                <input asp-for="Name" class="form-control" placeholder="Adınızı Giriniz" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Surname" class="form-label">Soyad</label>
+                                <input asp-for="Surname" class="form-control" placeholder="Soyadınızı Giriniz" />
+                                <span asp-validation-for="Surname" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Email" class="form-label">E-posta</label>
+                                <input asp-for="Email" type="email" class="form-control" placeholder="E-posta Adresinizi Giriniz" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Password" class="form-label">Şifre</label>
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Şifrenizi Giriniz" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="DepartmentId" class="form-label">Departman</label>
+                                <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.Departments">
+                                    <option value="">Seçiniz</option>
+                                </select>
+                                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="AppRoleId" class="form-label">Rol</label>
+                                <select asp-for="AppRoleId" class="form-control" asp-items="ViewBag.AppRoles">
+                                    <option value="">Seçiniz</option>
+                                </select>
+                                <span asp-validation-for="AppRoleId" class="text-danger"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-success waves-effect waves-light mt-3">Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

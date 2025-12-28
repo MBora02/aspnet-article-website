@@ -1,0 +1,54 @@
+﻿@model CreateReviewDto
+
+<style>
+    .rating-stars {
+        direction: rtl;
+        unicode-bidi: bidi-override;
+        display: inline-flex;
+        gap: 0.3rem;
+    }
+
+        .rating-stars input {
+            display: none;
+        }
+
+        .rating-stars label {
+            font-size: 2rem;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+            .rating-stars input:checked ~ label,
+            .rating-stars label:hover,
+            .rating-stars label:hover ~ label {
+                color: gold;
+            }
+</style>
+
+<div class="comment-form-wrap pt-5">
+    <h3 class="mb-5">Bir Yorum Yapın</h3>
+    <form method="post" asp-action="AddReview" asp-controller="Article"  class="p-5 bg-light">
+        <input type="hidden" name="ArticleId" value="@ViewBag.articleId" />
+
+        <div asp-for="Comment" class="form-group">
+            <label  for="Comment">Yorumunuz</label>
+            <textarea name="Comment" id="Comment" cols="30" rows="5" class="form-control"></textarea>
+        </div>
+
+        <div asp-for="Rating" class="form-group">
+            <label>Puanınız</label>
+            <div class="rating-stars">
+                <input type="radio" id="star5" name="Rating" value="5"><label for="star5">★</label>
+                <input type="radio" id="star4" name="Rating" value="4"><label for="star4">★</label>
+                <input type="radio" id="star3" name="Rating" value="3"><label for="star3">★</label>
+                <input type="radio" id="star2" name="Rating" value="2"><label for="star2">★</label>
+                <input type="radio" id="star1" name="Rating" value="1"><label for="star1">★</label>
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            <input type="submit" value="Yorum Yap" class="btn py-3 px-4 btn-primary">
+        </div>
+    </form>
+</div>

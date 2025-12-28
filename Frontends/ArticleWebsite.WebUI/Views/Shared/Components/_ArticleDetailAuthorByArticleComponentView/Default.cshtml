@@ -1,0 +1,14 @@
+﻿@using ArticleWebsite.Dto.AppUserDtos
+@model List<GetAuthorByArticleIdDto>
+
+<div class="about-author d-flex p-4 bg-light">
+   
+    <div class="desc">
+        @foreach (var item in Model){
+            <h3>@(item.AuthorName+" "+item.AuthorSurname)</h3>
+            <h4>@item.AuthorEmail</h4>
+            <h4>@item.DepartmentName</h4>
+            }
+        </div>
+   
+</div>

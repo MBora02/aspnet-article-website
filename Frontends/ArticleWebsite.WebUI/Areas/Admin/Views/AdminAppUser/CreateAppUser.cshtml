@@ -1,0 +1,47 @@
+﻿@model CreateAppUserDto
+@{
+    ViewData["Title"] = "CreateAppUser";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Kullanıcı Girişi</h4>
+                        <form asp-area="Admin" asp-controller="AdminAppUser" asp-action="CreateAppUser" method="post">
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label for="exampleInputName">Ad</label>
+                                <input type="text" class="form-control" id="exampleInputName" asp-for="Name" placeholder=" Ad Girişi Yapınız">
+                                <label for="exampleInputName">Soyad</label>
+                                <input type="text" class="form-control" id="exampleInputName" asp-for="Surname" placeholder="Soyad Girişi Yapınız">
+                                <label for="exampleInputName">Mail</label>
+                                <input type="text" class="form-control" id="exampleInputName" asp-for="Email" placeholder="Mail Girişi Yapınız">
+                                <label for="exampleInputName">Şifre</label>
+                                <input type="text" class="form-control" id="exampleInputName" asp-for="Password" placeholder="Şifre Girişi Yapınız">
+                                <div class="form-group">
+                                    <label asp-for="DepartmentId">Departman</label>
+                                    <select asp-for="DepartmentId" class="form-control" asp-items="@(new SelectList(ViewBag.Departments, "DepartmentId", "Name"))">
+                                        <option value="">-- Seçiniz --</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="AppRoleId">Role</label>
+                                    <select asp-for="AppRoleId" class="form-control" asp-items="@(new SelectList(ViewBag.AppRoles, "AppRoleId", "AppRoleName"))">
+                                        <option value="">-- Seçiniz --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Bölümü Kaydet</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

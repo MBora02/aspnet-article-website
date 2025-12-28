@@ -1,0 +1,15 @@
+﻿@using ArticleWebsite.Dto.AboutDtos
+@model List<ResultAboutDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+@foreach (var item in Model)
+{
+	<div class="faq-item mb-5">
+		<h2 class="faq-question mb-3">@item.Title</h2>
+		<p class="faq-answer">@item.Description</p>
+	</div>
+	
+
+}

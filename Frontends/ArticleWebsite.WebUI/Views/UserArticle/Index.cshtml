@@ -1,0 +1,54 @@
+﻿@model List<ArticleWebsite.Dto.ArticleDtos.ResultArticleWithAllDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/ProfileUILayout/Index.cshtml";
+}
+
+<h2>Makalelerim</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<a asp-action="CreateArticle" class="btn btn-primary mb-3">Yeni Makale Oluştur</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Başlık</th>
+            <th>Departman</th>
+            <th>Etiket</th>
+            <th>Durum</th>
+            <th>Oluşturulma</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var article in Model)
+        {
+            <tr>
+                <td>@article.Title</td>
+                <td>@article.DepartmentName</td>
+                <td>@article.TagCloudTitle</td>
+                <td>@article.StatusName</td>
+                <td>@article.CreatedAt.ToString("dd.MM.yyyy")</td>
+                <td>
+                    
+                    <form asp-action="RemoveArticle" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@article.ArticleId" />
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</button>
+                    </form>
+                    <form asp-action="SendForApproval" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@article.ArticleId" />
+                        <button type="submit" class="btn btn-sm btn-success">Onaya Gönder</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
