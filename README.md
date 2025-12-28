@@ -90,7 +90,7 @@ The project follows **Onion Architecture**.
 
 ## Project Structure
 
-```text```
+```text
 ArticleWebsite
 ├── Core
 │   ├── ArticleWebsite.Domain
@@ -102,3 +102,4 @@ ArticleWebsite
 └── Frontends
     ├── ArticleWebsite.WebUI
     └── ArticleWebsite.Dto
+```
