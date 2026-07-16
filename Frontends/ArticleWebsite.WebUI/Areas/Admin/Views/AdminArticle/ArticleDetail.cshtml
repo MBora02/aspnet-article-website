@@ -1,0 +1,104 @@
+@model ResultArticleWithAllDto
+@{
+    ViewData["Title"] = "ArticleDetail";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Makale Ayrıntıları</h4>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label"><strong>Makale Başlığı:</strong></label>
+                            <div class="col-sm-10 col-form-label">
+                                @Model.Title
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label"><strong>Makale İçeriği:</strong></label>
+                            <div class="col-sm-10 col-form-label" style="white-space: pre-wrap; line-height: 1.6;">
+                                @Model.Content
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label"><strong>Yazar:</strong></label>
+                            <div class="col-sm-10 col-form-label">
+                                @Model.AuthorName @Model.AuthorSurname (@Model.AuthorEmail)
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label"><strong>Departman:</strong></label>
+                            <div class="col-sm-10 col-form-label">
+                                @Model.DepartmentName
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label"><strong>Oluşturulma Tarihi:</strong></label>
+                            <div class="col-sm-10 col-form-label">
+                                @Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label"><strong>Durum:</strong></label>
+                            <div class="col-sm-10 col-form-label">
+                                @Model.StatusName
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label"><strong>Etiket:</strong></label>
+                            <div class="col-sm-10 col-form-label">
+                                @Model.TagCloudTitle
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label"><strong>PDF Dosyası:</strong></label>
+                            <div class="col-sm-10 col-form-label">
+                                @if (!string.IsNullOrEmpty(Model.PdfFilePath))
+                                {
+                                    <a href="@Model.PdfFilePath" class="btn btn-sm btn-outline-danger" target="_blank">PDF Görüntüle</a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Yüklenmemiş</span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-2 col-form-label"><strong>Makale Görseli:</strong></label>
+                            <div class="col-sm-10 col-form-label">
+                                @if (!string.IsNullOrEmpty(Model.ImagePath))
+                                {
+                                    <a href="@Model.ImagePath" target="_blank">
+                                        <img src="@Model.ImagePath" class="img-thumbnail" style="max-width: 300px;" alt="Görsel" />
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Yüklenmemiş</span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="/Admin/AdminArticle/Index" class="btn btn-secondary">Listeye Geri Dön</a>
+                            <a href="/Admin/AdminArticle/RemoveArticle/@Model.ArticleId" class="btn btn-danger" onclick="return confirm('Bu makaleyi silmek istediğinize emin misiniz?');">Makaleyi Sil</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

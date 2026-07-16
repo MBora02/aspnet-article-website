@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,20 @@ namespace ArticleWebsite.Persistence.Repositories
 {
     public class FileService : IFileService
     {
-        private readonly string _uiRootPath = @"C:\Users\mbcmu\Desktop\Bitirme\ArticleWebsite\Frontends\ArticleWebsite.WebUI\wwwroot";
+        private readonly string _uiRootPath;
+
+        public FileService()
+        {
+            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            var directory = new DirectoryInfo(baseDir);
+            while (directory != null && !directory.GetFiles("*.sln").Any())
+            {
+                directory = directory.Parent;
+            }
+            _uiRootPath = directory != null 
+                ? Path.Combine(directory.FullName, "Frontends", "ArticleWebsite.WebUI", "wwwroot") 
+                : Path.Combine(baseDir, "wwwroot");
+        }
 
         public async Task<string> SaveFileAsync(IFormFile file, string folderName)
         {

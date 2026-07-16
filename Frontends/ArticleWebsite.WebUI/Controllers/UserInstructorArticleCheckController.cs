@@ -1,4 +1,4 @@
-﻿using System.Net.Http.Headers;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using ArticleWebsite.Dto.ArticleDtos;
 using Microsoft.AspNetCore.Authorization;
@@ -37,7 +37,7 @@ namespace ArticleWebsite.WebUI.Controllers
                 return View(new List<ResultArticleWithAllDto>());
             }
 
-            var response = await client.GetAsync($"https://localhost:7031/api/Articles/GetArticleByDepartmentId?id={departmentId}");
+            var response = await client.GetAsync("https://localhost:7031/api/Articles/pending-by-department");
 
             if (!response.IsSuccessStatusCode)
             {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -23,6 +23,7 @@ namespace ArticleWebsite.Application.Tools
                 claims.Add(new Claim(ClaimTypes.Role, result.Role));
 
             claims.Add(new Claim(ClaimTypes.NameIdentifier, result.Id.ToString()));
+            claims.Add(new Claim("departmentId", result.DepartmentId.ToString()));
 
             if (!string.IsNullOrWhiteSpace(result.Email))
                 claims.Add(new Claim("Email", result.Email));

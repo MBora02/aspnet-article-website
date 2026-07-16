@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace ArticleWebsite.Persistence.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=**********\\SQLEXPRESS;initial catalog=ArticleWebsiteDb;integrated security=true;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-74G97I3\\SQLEXPRESS;initial catalog=ArticleWebsiteDb;integrated security=true;TrustServerCertificate=true");
         }
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }

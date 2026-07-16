@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,7 +36,7 @@ namespace ArticleWebsite.Application.Features.Mediator.Handlers.AppUserHandlers
                 values.Email = user.Email;
                 values.Role = (await _appRoleRepository.GetByFilterAsync(x => x.AppRoleId == user.AppRoleId)).AppRoleName;
                 values.Id = user.AppUserId;
-                
+                values.DepartmentId = user.DepartmentId;
             }
             return values;
         }

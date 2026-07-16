@@ -1,0 +1,65 @@
+@model ArticleWebsite.Dto.ArticleDtos.ResultArticleWithAllDto
+@{
+    ViewData["Title"] = "Makale Detayı";
+    Layout = "~/Views/ProfileUILayout/Index.cshtml";
+}
+
+<div class="card mt-4">
+    <div class="card-header bg-info text-white">
+        <h3>Makale Detayı: @Model.Title</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <h5><strong>İçerik:</strong></h5>
+                <p style="white-space: pre-wrap; font-size: 1.1em; line-height: 1.6;">@Model.Content</p>
+            </div>
+            <div class="col-md-4 border-start">
+                <h5><strong>Bilgiler:</strong></h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><strong>Yazar:</strong> @Model.AuthorName @Model.AuthorSurname</li>
+                    <li class="mb-2"><strong>Email:</strong> @Model.AuthorEmail</li>
+                    <li class="mb-2"><strong>Bölüm:</strong> @Model.DepartmentName</li>
+                    <li class="mb-2"><strong>Etiket:</strong> @Model.TagCloudTitle</li>
+                    <li class="mb-2"><strong>Durum:</strong> <span class="badge bg-warning text-dark">@Model.StatusName</span></li>
+                    <li class="mb-2"><strong>Tarih:</strong> @Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")</li>
+                </ul>
+
+                <hr />
+
+                <h5><strong>Ekler:</strong></h5>
+                <div class="d-grid gap-2">
+                    @if (!string.IsNullOrEmpty(Model.PdfFilePath))
+                    {
+                        <a href="@Model.PdfFilePath" class="btn btn-outline-danger btn-sm" target="_blank">
+                            <i class="fa fa-file-pdf"></i> PDF Görüntüle
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">PDF dosyası yok.</span>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                    {
+                        <a href="@Model.ImagePath" class="btn btn-outline-primary btn-sm" target="_blank">
+                            Görseli Görüntüle
+                        </a>
+                        <img src="@Model.ImagePath" class="img-thumbnail mt-2" alt="Makale Görseli" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+        <div>
+            <form asp-action="ApproveArticle" method="post" asp-route-id="@Model.ArticleId" class="d-inline">
+                <button type="submit" class="btn btn-success me-2" onclick="return confirm('Bu makaleyi onaylamak istediğinize emin misiniz?');">Onayla</button>
+            </form>
+            <form asp-action="RejectArticle" method="post" asp-route-id="@Model.ArticleId" class="d-inline">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Bu makaleyi reddetmek istediğinize emin misiniz?');">Reddet</button>
+            </form>
+        </div>
+    </div>
+</div>

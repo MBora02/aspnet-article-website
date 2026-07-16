@@ -1,4 +1,4 @@
-﻿@model List<ArticleWebsite.Dto.ArticleDtos.ResultArticleWithAllDto>
+@model List<ArticleWebsite.Dto.ArticleDtos.ResultArticleWithAllDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/ProfileUILayout/Index.cshtml";
@@ -43,10 +43,13 @@
                         <input type="hidden" name="id" value="@article.ArticleId" />
                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</button>
                     </form>
-                    <form asp-action="SendForApproval" method="post" style="display:inline;">
-                        <input type="hidden" name="id" value="@article.ArticleId" />
-                        <button type="submit" class="btn btn-sm btn-success">Onaya Gönder</button>
-                    </form>
+                    @if (article.StatusId == 1)
+                    {
+                        <form asp-action="SendForApproval" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@article.ArticleId" />
+                            <button type="submit" class="btn btn-sm btn-success">Onaya Gönder</button>
+                        </form>
+                    }
                 </td>
             </tr>
         }

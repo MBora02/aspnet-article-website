@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +11,7 @@ namespace ArticleWebsite.Application.Features.Mediator.Results.AppUserResults
         public int Id { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
+        public int DepartmentId { get; set; }
         public bool IsExist { get; set; }
     }
 }

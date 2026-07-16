@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,7 +71,7 @@ namespace ArticleWebsite.Persistence.Repositories
                .Include(x => x.Department)
                .Include(x => x.Status)
                .Include(x => x.TagCloud)
-               .Where(x => x.TagCloudId == TagCloudId)
+               .Where(x => x.TagCloudId == TagCloudId && x.StatusId == 3)
                .ToListAsync();
 
         }
@@ -92,6 +92,7 @@ namespace ArticleWebsite.Persistence.Repositories
             return await _context.Articles
         .Include(x => x.Author)
         .Include(x => x.Department)
+        .Where(x => x.StatusId == 3)
         .OrderByDescending(x => x.ArticleId)
         .Take(3)
         .ToListAsync();

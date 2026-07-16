@@ -1,4 +1,4 @@
-﻿@model List<ResultArticleWithAllDto>
+@model List<ResultArticleWithAllDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -47,7 +47,7 @@
                                             <td>@item.StatusName</td>
                                             <td>@item.TagCloudTitle</td>
                                             <td><a href="/Admin/AdminArticle/RemoveArticle/@item.ArticleId" class="btn btn-outline-danger">Sil</a></td>
-                                            <td><a href="/Admin/AdminArticle/UpdateArticle/@item.ArticleId" class="btn btn-outline-success">Ayrıntılar</a></td>
+                                            <td><a href="/Admin/AdminArticle/ArticleDetail/@item.ArticleId" class="btn btn-outline-success">Ayrıntılar</a></td>
                                             <td><a href="/Admin/AdminReview/ArticleReviews/@item.ArticleId" class="btn btn-outline-dark">Yorumlar</a></td>
                                         </tr>
                                     }

@@ -1,4 +1,4 @@
-﻿using ArticleWebsite.Dto.ArticleDtos;
+using ArticleWebsite.Dto.ArticleDtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -50,12 +50,27 @@ namespace ArticleWebsite.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> RemoveArticle(int id)
         {
             var client = CreateAuthorizedClient();
-            var response = await client.DeleteAsync($"https://localhost:7031/api/Articles?id={id}");
-            if (response.IsSuccessStatusCode)
+            var responseMessage = await client.DeleteAsync($"https://localhost:7031/api/Articles?id={id}");
+            if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-            TempData["Error"] = $"Makale silinemedi. Hata: {response.StatusCode}";
+            TempData["Error"] = $"Makale silinemedi. Hata: {responseMessage.StatusCode}";
+            return RedirectToAction("Index");
+        }
+
+        [Route("ArticleDetail/{id}")]
+        public async Task<IActionResult> ArticleDetail(int id)
+        {
+            var client = CreateAuthorizedClient();
+            var response = await client.GetAsync($"https://localhost:7031/api/Articles/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonData = await response.Content.ReadAsStringAsync();
+                var article = JsonConvert.DeserializeObject<ResultArticleWithAllDto>(jsonData);
+                return View(article);
+            }
+            TempData["Error"] = "Makale bulunamadı.";
             return RedirectToAction("Index");
         }
     }

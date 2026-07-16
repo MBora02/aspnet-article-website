@@ -1,4 +1,4 @@
-﻿using System.Net.Http.Headers;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using ArticleWebsite.Dto.ArticleDtos;
@@ -35,7 +35,8 @@ namespace ArticleWebsite.WebUI.Controllers
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultArticleWithAllDto>>(jsonData);
-                return View(values);
+                var approvedValues = values.Where(x => x.StatusId == 3).ToList();
+                return View(approvedValues);
             }
             return View(new List<ResultArticleWithAllDto>());
         }

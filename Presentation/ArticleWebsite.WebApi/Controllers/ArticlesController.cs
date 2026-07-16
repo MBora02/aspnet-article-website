@@ -1,4 +1,4 @@
-﻿using ArticleWebsite.Application.Features.Mediator.Commands.ArticleCommands;
+using ArticleWebsite.Application.Features.Mediator.Commands.ArticleCommands;
 using ArticleWebsite.Application.Features.Mediator.Queries.ArticleQueries;
 using ArticleWebsite.Application.Interfaces;
 using ArticleWebsite.Dto.ArticleDtos;
@@ -153,7 +153,7 @@ namespace ArticleWebsite.WebApi.Controllers
             return Ok("Makale reddedildi.");
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Instructor")]
         [HttpGet("pending-by-department")]
         public async Task<IActionResult> GetPendingArticlesByDepartment()
         {

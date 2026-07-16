@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +25,10 @@ namespace ArticleWebsite.Application.Features.Mediator.Handlers.ArticleHandlers
             if (article == null || article.AuthorId != request.AuthorId)
             {
                 throw new Exception("Makale bulunamadı veya yetkiniz yok.");
+            }
+            if (article.StatusId != 1)
+            {
+                throw new Exception("Bu makale zaten onay sürecinde veya sonuçlanmış.");
             }
             article.StatusId = 2; // Danışman onayı bekliyor
             article.UpdatedAt = DateTime.UtcNow;

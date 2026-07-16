@@ -1,4 +1,4 @@
-﻿using ArticleWebsite.Dto.LoginDto;
+using ArticleWebsite.Dto.LoginDto;
 using ArticleWebsite.WebUI.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -59,6 +59,13 @@ namespace ArticleWebsite.WebUI.Controllers
                     if (!string.IsNullOrEmpty(userId))
                     {
                         claims.Add(new Claim(ClaimTypes.NameIdentifier, userId));
+                    }
+
+                    // Departman Id'sini ekle (hem API hem UI için casing uyumlu)
+                    var deptId = claims.FirstOrDefault(c => c.Type == "departmentId" || c.Type == "DepartmentId")?.Value;
+                    if (!string.IsNullOrEmpty(deptId))
+                    {
+                        claims.Add(new Claim("DepartmentId", deptId));
                     }
 
                     // Kullanıcı rolünü kontrol et
